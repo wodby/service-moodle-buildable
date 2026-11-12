@@ -1,0 +1,38 @@
+name: moodle-buildable
+type: service
+icon: moodle
+title: Moodle (buildable)
+from: moodle
+fromVersionConstraint: "^3.0.0"
+fromVersion: "3.0.5"
+guidance: GUIDANCE.md
+
+labels:
+- moodle
+
+# PHP versions of wodby/moodle-php: PHP-FPM with Wodby's setup for Moodle,
+# without Moodle. Wodby CI puts the Moodle release the app repository pins in
+# .moodle-version together with its plugins, then builds on this image.
+options:
+- version: '8.4'
+  tag: 8.4-r0
+  default: true
+
+build:
+  connect: true
+  dockerfile: Dockerfile
+  dockerignore: .dockerignore
+  boilerplates:
+  - name: vanilla
+    title: Vanilla Moodle
+    repo: https://github.com/wodby/moodle-boilerplate
+    branch: main
+
+# The image is built from the app repository on top of wodby/moodle-php. The
+# moodle-buildable-cron worker runs the same image.
+workloads:
+- name: main
+  containers:
+  - name: php
+    image: wodby/moodle-php
+    build: true
