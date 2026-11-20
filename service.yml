@@ -4,7 +4,7 @@ icon: moodle
 title: Moodle (buildable)
 from: moodle
 fromVersionConstraint: "^3.0.0"
-fromVersion: "3.0.8"
+fromVersion: "3.0.9"
 guidance: GUIDANCE.md
 
 labels:
@@ -16,6 +16,7 @@ labels:
 options:
 - version: '8.4'
   tag: 8.4-r4
+  digest: sha256:5ffcb1972a0a1167b357e8540060445270d74cf1a026a91a0de8f6bf03701c03
   default: true
 
 build:
